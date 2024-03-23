@@ -1,10 +1,6 @@
 # Medical Appointment
 
----
-
 A doctor's appointment system is a scheduling platform that facilitates the booking, management, and organization of patient appointments with healthcare providers.
-
----
 
 ## Getting Started
 
