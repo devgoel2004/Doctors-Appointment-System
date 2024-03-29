@@ -2,10 +2,27 @@ import React from "react";
 import "./Login.css";
 
 import { Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 const Login = () => {
-  const onFinishHandler = (values) => {
-    console.log(values);
+  const navigate = useNavigate();
+  const onFinishHandler = async (values) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/v1/users/login",
+        values
+      );
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.token);
+        alert("Login Successfully");
+        navigate("/");
+      } else {
+        alert(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong");
+    }
   };
   return (
     <div className="login-box">
